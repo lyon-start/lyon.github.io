@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人回忆</title>
+    <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="css/photos-style.css">
+    <!-- 引入JS文件（defer确保DOM加载完成） -->
+    <script src="js/photos.js" defer></script>
+    <style>
+        /* 隐藏滚动条 */
+        .photos-content, .photos-sidebar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .photos-content::-webkit-scrollbar, .photos-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 嵌入导航条（和读书笔记页面一致） -->
+    <iframe
+        src="header.html"
+        width="100%"
+        height="85px"
+        frameborder="0"
+        scrolling="no"
+        style="position: fixed; top: 0; left: 0; z-index: 999; pointer-events: auto; min-height: 70px; max-height: 100px;"
+        onload="syncIframeTheme()"
+    ></iframe>
+
+    <!-- 主题切换按钮（和读书笔记页面一致） -->
+    <div class="theme-toggle" id="themeToggle">
+        <span class="theme-icon" id="themeIcon">☀️</span>
+    </div>
+
+    <!-- 个人回忆布局容器（双栏结构） -->
+    <div class="photos-container">
+        <!-- 左侧回忆分类导航 -->
+        <div class="photos-sidebar">
+            <h3 class="sidebar-title">我的回忆</h3>
+            <ul class="photo-categories" id="photoCategories">
+                <!-- JS动态生成分类列表 -->
+            </ul>
+        </div>
+
+        <!-- 右侧照片/回忆展示区 -->
+        <div class="photos-content" id="photosContent">
+            <div class="content-placeholder">
+                <h2>正在加载回忆...</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增：照片预览弹窗（点击照片时显示） -->
+    <div class="photo-modal" id="photoModal">
+        <div class="modal-close" id="modalClose">×</div>
+        <div class="modal-content">
+            <img src="" alt="回忆照片" id="modalPhoto">
+            <p class="photo-desc" id="photoDesc"></p>
+        </div>
+    </div>
+</body>
+</html>

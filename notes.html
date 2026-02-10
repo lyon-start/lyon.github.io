@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>读书笔记</title>
+    <!-- 引入marked.js（解析MD文件） -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- 引入独立的读书笔记样式文件 -->
+    <link rel="stylesheet" href="css/notes-style.css">
+    <!-- 关键修改：JS文件路径改为 js/notes.js -->
+    <script src="js/notes.js" defer></script>
+    <style>
+        /* 隐藏滚动条样式 */
+        .notes-content {
+            -ms-overflow-style: none;  /* IE/Edge */
+            scrollbar-width: none;     /* Firefox */
+        }
+        .notes-content::-webkit-scrollbar {
+            display: none;            /* Chrome/Safari */
+        }
+        .notes-sidebar::-webkit-scrollbar {
+            display: none;            /* 左侧导航也隐藏滚动条（可选） */
+        }
+    </style>
+</head>
+<body>
+    <!-- 嵌入导航条 -->
+    <iframe
+        src="header.html"
+        width="100%"
+        height="85px"
+        frameborder="0"
+        scrolling="no"
+        style="position: fixed; top: 0; left: 0; z-index: 999;"
+    ></iframe>
+
+    <!-- 主题切换按钮 -->
+    <div class="theme-toggle" id="themeToggle">
+        <span class="theme-icon" id="themeIcon">☀️</span>
+    </div>
+
+    <!-- 读书笔记布局容器 -->
+    <div class="notes-container">
+        <!-- 左侧书本导航 -->
+        <div class="notes-sidebar">
+            <h3 class="sidebar-title">我的书单</h3>
+            <ul class="book-list" id="bookList">
+                <!-- JS动态生成书本列表 -->
+            </ul>
+        </div>
+
+        <!-- 右侧MD内容展示 -->
+        <div class="notes-content" id="notesContent">
+            <div class="content-placeholder">
+                <h2>正在加载读书笔记...</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

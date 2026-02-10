@@ -1,0 +1,9 @@
+{
+  "users": [
+    {
+      "username": "YWRtaW4=",  // admin 的 Base64 加密结果
+      "password": "MTIzNDU2"   // 123456 的 Base64 加密结果
+    }
+  ],
+  "tips": "默认账号：admin，默认密码：123456"
+}

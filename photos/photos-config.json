@@ -1,0 +1,36 @@
+{
+  "categories": [
+    {
+      "name": "旅行回忆",
+      "photos": [
+        {
+          "src": "images/旅行回忆/1.jpg",
+          "desc": "2025年夏，海边的日落"
+        },
+        {
+          "src": "images/旅行回忆/2.jpg",
+          "desc": "2024年秋，山间的枫叶"
+        }
+      ]
+    },
+    {
+      "name": "生活日常",
+      "photos": [
+        {
+          "src": "images/生活日常/下午茶.jpg",
+          "desc": "周末的下午茶"
+        }
+      ]
+    },
+    {
+      "name": "重要时刻",
+      "photos": [
+        {
+          "src": "images/重要时刻/生日.jpg",
+          "desc": "生日的惊喜"
+        }
+      ]
+    }
+  ],
+  "defaultImg": "images/default.jpg"
+}

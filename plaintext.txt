@@ -1,0 +1,29 @@
+study/
+├─ .venv/
+├─ css/
+│  ├─ header-style.css
+│  ├─ notes-style.css
+│  └─ style.css
+├─ images/
+│  ├─ bg1.jpg
+│  ├─ bg2.jpg
+│  └─ bg3.jpg
+├─ js/
+│  ├─ common.js
+│  ├─ header-script.js
+│  ├─ login.js
+│  ├─ notes.js
+│  └─ photos.js
+├─ lib/
+│  └─ marked.min.js
+├─ notes/
+│  ├─ files.json
+│  ├─ 你好.md
+│  └─ 小王子.md
+├─ photos/
+│  └─ photos.json
+├─ header.html
+├─ index.html
+├─ notes.html
+├─ photos.html
+└─ user.json

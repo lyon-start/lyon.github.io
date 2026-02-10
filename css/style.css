@@ -1,0 +1,468 @@
+/* ========== 原有登录页样式（完整保留） ========== */
+/* 全局重置（苹果原生风格） */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 登录页整体布局：适配艺术字+登录框 */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10%; /* 登录框右侧留白 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景图 + 50%黑色蒙版 */
+.bg-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.bg-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 50%黑色蒙版 */
+  z-index: 1;
+}
+
+.bg-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+.bg-slide.active {
+  opacity: 1;
+}
+
+/* 艺术字样式（最顶层，登录框左侧） */
+.art-text {
+  position: absolute;
+  top: 20%; /* 靠上布局，可调整 */
+  left: 10%; /* 左侧留白，和登录框右侧留白呼应 */
+  z-index: 3; /* 层级高于背景(0/1)和登录框(2)，最顶层 */
+  color: #ffffff; /* 白色文字适配黑色蒙版 */
+  text-align: left;
+}
+/* 艺术字主标题（可自定义字体/大小/样式） */
+.art-title {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  /* 艺术字光影效果，增强质感 */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  /* 可选：渐变文字，更艺术化 */
+  background: linear-gradient(90deg, #ffffff, #e0e0e0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* 艺术字副标题 */
+.art-subtitle {
+  font-size: 24px;
+  font-weight: 400;
+  opacity: 0.9;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 登录框：50%透明度 + 玻璃质感 */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.5); /* 50%透明度 */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 48px 40px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 2; /* 低于艺术字(3)，高于背景(0/1) */
+  transform: perspective(1000px) translateZ(0);
+}
+
+/* 登录logo区域 */
+.login-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.logo-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: inline-block;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+.login-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 表单样式 */
+.login-form {
+  margin-bottom: 24px;
+}
+.form-group {
+  margin-bottom: 24px;
+}
+.form-label {
+  display: block;
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  font-size: 17px;
+  color: #ffffff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.form-input:focus {
+  outline: none;
+  border-color: rgba(0, 113, 227, 0.7);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 0 0 4px rgba(0, 113, 227, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* 错误提示 */
+.error-tip {
+  color: #ff3b30;
+  font-size: 13px;
+  text-align: center;
+  margin-top: -16px;
+  margin-bottom: 16px;
+  display: none;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 登录按钮 */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: rgba(0, 113, 227, 0.9);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 4px 12px rgba(0, 113, 227, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.login-btn:hover {
+  background: rgba(0, 113, 227, 1);
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 16px rgba(0, 113, 227, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* 底部文字 */
+.login-footer {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 24px;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式适配：移动端登录框居中 */
+@media (max-width: 768px) {
+  .art-text {
+    display: none; /* 移动端空间有限，隐藏艺术字 */
+  }
+  .login-page {
+    justify-content: center;
+    padding: 0 20px;
+  }
+  .login-card {
+    padding: 32px 24px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* ========== 新增：导航条样式（整合到原有style.css） ========== */
+/* 导航条核心样式 - 苹果玻璃背景 + 三星hover缩放 */
+.navbar {
+  position: fixed; /* 固定在顶部 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.15); /* 苹果玻璃背景 */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 999; /* 最高层级，不被遮挡 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo样式 */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+}
+
+.logo-icon {
+  font-size: 24px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+/* 导航菜单布局 */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* 核心导航项 - 三星hover缩放交互 */
+.nav-item {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease; /* 顺滑过渡 */
+  position: relative;
+}
+
+/* 激活项底部蓝线（苹果风格） */
+.nav-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 12px;
+  width: calc(100% - 24px);
+  height: 2px;
+  background-color: #0071e3;
+  border-radius: 1px;
+}
+
+/* hover缩放+背景变色（三星风格） */
+.nav-item:hover:not(.logout-btn) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05); /* 轻微缩放 */
+  color: #0071e3; /* 苹果蓝高亮 */
+}
+
+/* 右侧功能项容器（主题切换+退出登录） */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 24px; /* 和核心导航项分隔 */
+}
+
+/* 主题切换按钮组 */
+.theme-switcher {
+  display: flex;
+  gap: 8px;
+}
+
+.theme-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+  background: rgba(0, 113, 227, 0.8);
+  transform: scale(1.05); /* 同步缩放交互 */
+  border-color: #0071e3;
+}
+
+/* 退出登录按钮特殊样式 */
+.logout-btn {
+  background: rgba(255, 59, 48, 0.2);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+}
+
+.logout-btn:hover {
+  background: rgba(255, 59, 48, 0.4);
+  color: #ffffff; /* 退出登录保持白色，不换蓝 */
+  transform: scale(1.05);
+}
+
+/* 响应式适配（移动端） */
+@media (max-width: 768px) {
+  .navbar-menu {
+    gap: 16px;
+  }
+
+  .nav-item {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .theme-switcher {
+    gap: 4px;
+  }
+
+  .theme-btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .navbar-right {
+    gap: 8px;
+    margin-left: 16px;
+  }
+}
+
+/* 移动端汉堡菜单（小屏折叠） */
+@media (max-width: 576px) {
+  .navbar-menu {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    width: 200px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    border-radius: 0 0 0 16px;
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-menu.show {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .navbar-right {
+    flex-direction: column;
+    margin-left: 0;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .theme-switcher {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* 汉堡按钮 */
+  .hamburger {
+    display: block;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 1px;
+    transition: all 0.2s ease;
+  }
+}
+
+/* ========== 新增：主题样式（适配3种模式） ========== */
+/* 白天模式（默认） */
+.theme-light {
+  --bg-color: rgba(255, 255, 255, 0.9);
+  --text-color: #1d1d1f;
+}
+
+/* 夜晚模式 */
+.theme-dark {
+  --bg-color: rgba(0, 0, 0, 0.85);
+  --text-color: #ffffff;
+}
+
+/* 流星雨模式 */
+.theme-meteor {
+  --bg-color: rgba(15, 23, 42, 0.9);
+  --text-color: #e0f2fe;
+  background-image: url('../images/meteor-bg.png'); /* 可添加流星雨背景图 */
+  background-size: cover;
+  background-position: center;
+}
+
+/* 页面主体适配主题 */
+main {
+  margin-top: 80px;
+  padding: 24px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  min-height: calc(100vh - 80px);
+  transition: all 0.3s ease;
+}

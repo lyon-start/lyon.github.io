@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玻璃风格导航条</title>
+    <link rel="stylesheet" href="css/header-style.css">
+</head>
+<body>
+    <nav class="glass-navbar">
+        <div class="nav-container">
+            <!-- 左侧导航选项 -->
+            <ul class="nav-list left-nav">
+                <li class="nav-item active" data-page="notes">
+                    <a href="#" class="nav-link">读书笔记</a>
+                </li>
+                <li class="nav-item" data-page="memories">
+                    <a href="#" class="nav-link">个人回忆</a>
+                </li>
+                <li class="nav-item reserved" data-page="reserved">
+                    <a href="#" class="nav-link">预留功能</a>
+                </li>
+            </ul>
+
+            <!-- 右侧功能区 -->
+            <ul class="nav-list right-nav">
+                <li class="nav-item logout" data-page="logout">
+                    <a href="#" class="nav-link">退出登录</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script src="js/header-script.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // ===================== 核心配置（全局唯一） =====================
     const CONFIG = {
-        loginPage: 'login.html',
+        loginPage: 'index.html',
         jsonConfigPath: 'photos/photos-config.json', // JSON仅读取一次
         defaultImg: 'images/default.jpg'
     };

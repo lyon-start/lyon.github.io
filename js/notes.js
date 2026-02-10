@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlToken = urlParams.get('token');
     const sessionToken = sessionStorage.getItem('accessToken');
     const isVerified = sessionStorage.getItem('isVerified') === 'true';
-    const loginPage = 'login.html';
+    const loginPage = 'index.html';
 
     if (!isLogin) {
         localStorage.clear();
